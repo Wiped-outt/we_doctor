@@ -1,0 +1,1 @@
+{/* <Text style={styles.username}>Olá, {name}!</Text> */}
