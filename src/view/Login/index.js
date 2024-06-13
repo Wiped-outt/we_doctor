@@ -20,10 +20,10 @@ function Login(){
     // background  
     <View style={styles.container_login}>
          
-      {/* <Image
-       source={require("./src/assets/wedoctor_cross.png")}
-       style={styles.wedoctor_cross}
-      /> */}
+         <Image
+        source={require('../../assets/wedoctor_cross.png')}
+        style={styles.wedoctor_cross_login}
+      />
 
       <Text style={styles.title_login}>CADASTRE-SE</Text>
       <Text style={styles.subtitle_login}>
@@ -139,16 +139,16 @@ const styles = StyleSheet.create({
       },
     
 
-//   wedoctor_cross_login:{
-//     width: 60,
-//     height: 60,
+  wedoctor_cross_login:{
+    width: 60,
+    height: 60,
 
-//     borderRadius: 5,
+    borderRadius: 5,
 
-//     marginTop: 40,
-//     marginBottom: 15,
+    marginTop: 40,
+    marginBottom: 15,
     
-//   },
+  },
 
   
 
@@ -239,7 +239,7 @@ const styles = StyleSheet.create({
 
     backgroundColor: "#9B0E08",
     borderRadius: 10,
-    marginHorizontal: 7,
+    marginHorizontal: 12,
 
     width: 330,
     height: 40,

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, TextInput} from 'react-native';
-import heart from "./src/assets/Heart.png";
+// import heart from "./src/assets/Heart.png";
 
 function Home(){
 
@@ -12,24 +12,26 @@ return(
 
     <View style={styles.redback_Home}>
 
-    {/* <Image
-       source={cross}
-    /> */}
+    <Image
+        source={require('../../assets/wedoctor_cross.png')}
+        style={styles.wedoctor_cross_Home}
+      />
         
-    <View style={styles.container2_Home}>
+        <View style={styles.container2_Home}>
 
-        <Text style={styles.title_Home}>Bem-vindo, Username!</Text>
+            <Text style={styles.title_Home}>Bem-vindo, Username!</Text>
 
-        <TextInput
-            style={styles.input_search_Home}
-            value={search}
-            onChangeText={setSearch}
-            placeholder=""
-        />
-        
+            <TextInput
+                style={styles.input_search_Home}
+                value={search}
+                onChangeText={setSearch}
+                placeholder=""
+            />
+            
 
 
-    </View>
+        </View>
+
     </View>
 
         <View style={styles.button_container_Home}>
@@ -40,15 +42,23 @@ return(
         
 
                 <TouchableOpacity style={styles.button_Home}>
-                    <Image source={heart}></Image>
+                    <Image
+                    source={require('../../assets/heart.png')}
+                    style={styles.icon_button_Home}/>
                     <Text style={styles.buttontext_Home}>Cardiologista</Text>
                 </TouchableOpacity>
             
                 <TouchableOpacity style={styles.button_Home}>
+                <Image
+                    source={require('../../assets/eye.png')}
+                    style={styles.icon_button_Home}/>
                     <Text style={styles.buttontext_Home}>Oftalmologista</Text>
                 </TouchableOpacity>
             
                 <TouchableOpacity style={styles.button_Home}>
+                <Image
+                    source={require('../../assets/medic.png')}
+                    style={styles.icon_button_Home}/>
                     <Text style={styles.buttontext_Home}>Clinico Geral</Text>
                 </TouchableOpacity>
 
@@ -57,15 +67,24 @@ return(
             <View style={styles.button_list2_Home}>
 
                 <TouchableOpacity style={styles.button_Home}>
+                <Image
+                    source={require('../../assets/bones.png')}
+                    style={styles.icon_button_Home}/>
                     <Text style={styles.buttontext_Home}>Ortopedista</Text>
                 </TouchableOpacity>
             
                 <TouchableOpacity style={styles.button_Home}>
+                <Image
+                    source={require('../../assets/tooth.png')}
+                    style={styles.icon_button_Home}/>
                     <Text style={styles.buttontext_Home}>Odontologia</Text>
                 </TouchableOpacity>
             
                 <TouchableOpacity style={styles.button_Home}>
-                    <Text style={styles.buttontext_Home}>Gastroenterologista</Text>
+                <Image
+                    source={require('../../assets/stomach.png')}
+                    style={styles.icon_button_Home}/>
+                    <Text style={styles.buttontext2_Home}>Gastroenterologista</Text>
                 </TouchableOpacity>
 
 
@@ -96,15 +115,41 @@ const styles = StyleSheet.create({
         
 
     },
+    
+    wedoctor_cross_Home:{
+
+        width: 60,
+        height: 60,
+    
+        borderRadius: 5,
+    
+        
+        marginLeft: 20,
+
+        boxShadow: {
+            shadowColor: "#000",
+            shadowOffset: {
+                width: 6,
+                height: 6,
+            },
+        },
+        shadowOpacity: 1, // Opacidade da sombra (1 é totalmente opaco)
+        shadowRadius: 4, // Raio da sombra (maior valor para maior difusão)
+        elevation: 20, // Elevação para Android (maior valor para sombra mais intensa)
+        
+      },
 
     container2_Home:{
         
+        
         alignItems: 'center',
-        marginBottom: 50,
+        marginBottom: 130,
+        marginTop: 20,
 
     },
 
     title_Home:{
+        
 
         color: "#fff",
         fontSize: 25,
@@ -119,7 +164,7 @@ const styles = StyleSheet.create({
         opacity: 0.4,
         borderRadius: 20,
         marginTop: 35,
-        marginHorizontal: 27,
+        marginHorizontal: 31,
     
         width: 330,
         height: 40,
@@ -179,6 +224,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         
+        
 
         shadowColor: 'black', // Cor da sombra
         shadowOffset: { width: 2, height: 2 }, // Deslocamento da sombra
@@ -188,7 +234,21 @@ const styles = StyleSheet.create({
 
       },
 
+      icon_button_Home:{
+
+        resizeMode: 'contain',
+        width: '50%',
+        height: '50%',
+
+    },
+
       buttontext_Home:{
+
+      },
+
+      buttontext2_Home:{
+
+            fontSize: 100,
 
       },
 
