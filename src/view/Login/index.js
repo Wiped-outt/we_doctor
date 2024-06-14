@@ -1,31 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, NavigationContainer } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, TextInput} from 'react-native';
 
 // import { TextInputMask } from 'react-native-masked-text';
 // npm install react-native-masked-text --save
 
+const navigation = useNavigation();
+const [name, setName] = useState('Cliente');
+const [birthdate, setBirthdate] = ('Nascimento');
+const [cpf, setCPF] = ('CPF');
+const [email, setEmail] = ('E-mail');
+const [phone, setPhone] = useState('Telefone');
+const [hour, setHour] = useState('Horário');
+const [data, setData] = useState('Data');
+
+const handleNameChange = (text) => {
+  setName(text);
+};
+
+const handleNavigate = () => {
+  navigation.navigate('Home', { name });
+};
+
+export default function Login ({ navigation, route}) {
 
 
-function Login(){
-
-  const [name, setName] = useState('');
-  const [birthdate, setBirthdate] = ('');
-  const [cpf, setCPF] = ('');
-  const [email, setEmail] = ('');
-  const [phone, setPhone] = useState('');
-
-  
   return(
 
-    // background  
     <View style={styles.container_login}>
          
-         <Image
+      <Image
         source={require('../../assets/wedoctor_cross.png')}
         style={styles.wedoctor_cross_login}
       />
 
       <Text style={styles.title_login}>CADASTRE-SE</Text>
+      
       <Text style={styles.subtitle_login}>
         Para um atendimento mais rápido</Text>
 
@@ -38,44 +47,33 @@ function Login(){
       <Text style={styles.label_login}>Nome do Paciente</Text>
       <TextInput
         style={styles.input_login}
-        value={name}
-        onChangeText={setName}
-        placeholder=""
+        onChangeText={handleNameChange}
       />
 
       <Text style={styles.label_login}>Data de Nascimento</Text>
       <TextInput
         style={styles.input_login}
-        value={birthdate}
-        onChangeText={setBirthdate}
-        placeholder=""
         keyboardType='numeric'
       />
 
       <Text style={styles.label_login}>CPF</Text>
       <TextInput
         style={styles.input_login}
-        value={cpf}
         onChangeText={setCPF}
-        placeholder=""
         keyboardType='numeric'
       />
 
       <Text style={styles.label_login}>E-Mail</Text>
       <TextInput
         style={styles.input_login}
-        value={email}
         onChangeText={setEmail}
-        placeholder=""
       />
 
       <Text style={styles.label_login}>Telefone</Text>
       <TextInput
         style={styles.input_login}
         // type={'cel-phone'}
-        value={phone}
         onChangeText={setPhone}
-        placeholder=""
         keyboardType='numeric'
       />
 
@@ -96,18 +94,14 @@ function Login(){
 
       <TextInput
         style={styles.input2_login}
-        value={phone}
-        onChangeText={setPhone}
-        placeholder=""
+        onChangeText={setHour}
         keyboardType='numeric'
       />
 
       
       <TextInput
         style={styles.input2_login}
-        value={phone}
-        onChangeText={setPhone}
-        placeholder=""
+        onChangeText={setData}
         keyboardType='numeric'
       />
 
@@ -121,12 +115,18 @@ function Login(){
 {/* ------------------------- Divisão 2 --------------------------- */}
 
       <TouchableOpacity style={styles.button_login}>
-        <Text style={styles.buttontext_login}>FINALIZADO</Text>
+
+        <Text 
+          style={styles.buttontext_login}
+          onPress={() => {navigation.navigate("Home", { name })}}>
+        FINALIZADO</Text>
+
       </TouchableOpacity>
 
     </View>
 
-)}
+  );
+}
 
 const styles = StyleSheet.create({
 
@@ -212,7 +212,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
 
-    marginLeft: 15,
+    marginLeft: 22.5,
 
   },
 
@@ -254,7 +254,7 @@ const styles = StyleSheet.create({
 
     backgroundColor: "#9B0E08",
     borderRadius: 10,
-    marginHorizontal: 7,
+    marginHorizontal: 12,
 
     width: 150,
     height: 40,
@@ -299,5 +299,3 @@ const styles = StyleSheet.create({
 
 
 })
-
-export default Login;

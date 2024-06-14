@@ -1,46 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, navigationContainer } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, TextInput} from 'react-native';
-// import heart from "./src/assets/Heart.png";
 
-function Home(){
+export default function Home ({ navigation, route, name, hour, data}){
 
 const [search, setSearch] = ('');
 
-return(
+    return(
 
-<View style={styles.container_Home}>
+        <View style={styles.container_Home}>
 
-    <View style={styles.redback_Home}>
-        
-        <View style={styles.top_Home}>
+            <View style={styles.redback_Home}>
+                
+                <View style={styles.top_Home}>
 
-            <Image
-                source={require('../../assets/wedoctor_cross.png')}
-                style={styles.wedoctor_cross_Home}/>
+                    <Image
+                        source={require('../../assets/wedoctor_cross.png')}
+                        style={styles.wedoctor_cross_Home}/>
 
-            <TouchableOpacity style={styles.bell_button_Home}>
-                <Image
-                    source={require('../../assets/bell.png')}/>
-            </TouchableOpacity>
+                    <TouchableOpacity style={styles.bell_button_Home}>
+                        <Image
+                            source={require('../../assets/bell.png')}/>
+                    </TouchableOpacity>
 
-        </View>
-            
-        <View style={styles.container2_Home}>
+                </View>
+                    
+                <View style={styles.container2_Home}>
 
-            <Text style={styles.title_Home}>Bem-vindo, Username!</Text>
+                    <Text style={styles.title_Home}>Bem-vindo, {name}!</Text>
 
-            <TextInput
-                style={styles.input_search_Home}
-                value={search}
-                onChangeText={setSearch}
-                placeholder=""
-            />
-            
+                    <TextInput
+                        style={styles.input_search_Home}
+                        value={search}
+                        onChangeText={setSearch}
+                        placeholder=""
+                    />
+                    
 
 
-        </View>
+                </View>
 
-    </View>
+            </View>
 
 {/* ------------------------- Divisão 1 --------------------------- */}
 
@@ -129,18 +128,22 @@ return(
 
                         <View  iew style={styles.time_background_Home}>
 
-                            <Text style={styles.time_Home}>00/00</Text>
+                            <Text style={styles.time_Home}>{data}</Text>
                         
                         </View>
 
                         <View  iew style={styles.time_background_Home}>
 
-                            <Text style={styles.time_Home}>00:00</Text>
+                            <Text style={styles.time_Home}>{hour}</Text>
 
                         </View>
 
                         <TouchableOpacity>
-                        <Text style={styles.change_Home}>Mudar</Text>
+                            <Text 
+                                style={styles.change_Home}
+                                onPress={() => {navigation.navigate("Login",)}}
+                            >Mudar</Text>
+                                
                         </TouchableOpacity>
 
                     </View>
@@ -537,5 +540,3 @@ const styles = StyleSheet.create({
 
 
 })
-
-export default Home;
