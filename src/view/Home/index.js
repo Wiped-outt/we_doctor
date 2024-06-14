@@ -11,11 +11,21 @@ return(
 <View style={styles.container_Home}>
 
     <View style={styles.redback_Home}>
+        
+    <View style={styles.top_Home}>
 
     <Image
         source={require('../../assets/wedoctor_cross.png')}
         style={styles.wedoctor_cross_Home}
       />
+
+<TouchableOpacity style={styles.bell_button_Home}>
+                    <Image
+                    source={require('../../assets/bell.png')}
+                    style={styles.bell_image_Home}/>
+                </TouchableOpacity>
+
+      </View>
         
         <View style={styles.container2_Home}>
 
@@ -33,6 +43,8 @@ return(
         </View>
 
     </View>
+
+{/* ------------------------- Divisão 1 --------------------------- */}
 
         <View style={styles.button_container_Home}>
 
@@ -84,7 +96,7 @@ return(
                 <Image
                     source={require('../../assets/stomach.png')}
                     style={styles.icon_button_Home}/>
-                    <Text style={styles.buttontext2_Home}>Gastroenterologista</Text>
+                    <Text style={styles.buttontext_Home}>Gastroenterologista</Text>
                 </TouchableOpacity>
 
 
@@ -92,6 +104,12 @@ return(
             </View>
 
         </View>
+
+{/* ------------------------- Divisão 2 --------------------------- */}
+
+
+
+
 
 </View>
 
@@ -139,6 +157,24 @@ const styles = StyleSheet.create({
         
       },
 
+    top_Home:{
+
+        flexDirection: 'row',
+
+      },
+
+    bell_button_Home:{
+
+        marginTop: 20,
+        marginLeft: 250,
+
+      },
+
+    bell_image_Home:{
+
+      },
+
+      
     container2_Home:{
         
         
@@ -248,7 +284,7 @@ const styles = StyleSheet.create({
 
       buttontext2_Home:{
 
-            fontSize: 100,
+            fontSize: '10%',
 
       },
 
