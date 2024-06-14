@@ -263,7 +263,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
     padding: 10,
     
-    marginBottom: 20,
+    marginBottom: 10,
     
 
   },
@@ -280,7 +280,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     
-    marginTop: 20,
+    marginTop: 12.5,
     marginBottom: 20,
 
     shadowColor: 'black', // Cor da sombra
