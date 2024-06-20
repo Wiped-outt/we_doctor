@@ -1,301 +1,247 @@
-import React, { useState, NavigationContainer } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image, TextInput} from 'react-native';
+// Importação de módulos necessários do React e React Native
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, Image, TextInput, Alert } from 'react-native';
+import { TextInputMask } from 'react-native-masked-text';
 
-// import { TextInputMask } from 'react-native-masked-text';
-// npm install react-native-masked-text --save
+// Componente principal da tela de Login
+export default function Login({ navigation }) {
+  // Estados para armazenar os valores dos campos do formulário
+  const [name, setName] = useState('');
+  const [birthdate, setBirthdate] = useState('');
+  const [cpf, setCPF] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [hour, setHour] = useState('');
+  const [data, setData] = useState('');
 
-const navigation = useNavigation();
-const [name, setName] = useState('Cliente');
-const [birthdate, setBirthdate] = ('Nascimento');
-const [cpf, setCPF] = ('CPF');
-const [email, setEmail] = ('E-mail');
-const [phone, setPhone] = useState('Telefone');
-const [hour, setHour] = useState('Horário');
-const [data, setData] = useState('Data');
+  // Função para lidar com o envio do formulário
+  const handleSubmit = () => {
+    // Verifica se todos os campos estão preenchidos
+    if (!name || !birthdate || !cpf || !email || !phone || !hour || !data) {
+      Alert.alert('Erro', 'Por favor, preencha todos os campos.');
+      return;
+    }
 
-const handleNameChange = (text) => {
-  setName(text);
-};
+    // Verifica se o CPF tem o comprimento correto
+    if (cpf.length !== 14) {
+      Alert.alert('Erro', 'CPF inválido.');
+      return;
+    }
 
-const handleNavigate = () => {
-  navigation.navigate('Home', { name });
-};
+    // Verifica se o telefone tem o comprimento correto
+    if (phone.length !== 15) {
+      Alert.alert('Erro', 'Telefone inválido.');
+      return;
+    }
 
-export default function Login ({ navigation, route}) {
+    // Navega para a tela Home passando alguns dados como parâmetros
+    navigation.navigate('Home', { name, hour, data });
+  };
 
-
-  return(
-
+  // Renderização do componente
+  return (
     <View style={styles.container_login}>
-         
-      <Image
-        source={require('../../assets/wedoctor_cross.png')}
-        style={styles.wedoctor_cross_login}
-      />
+      {/* Logo do WeDoctor */}
+      <Image source={require('../../assets/wedoctor_cross.png')} style={styles.wedoctor_cross_login} />
 
+      {/* Título e subtítulo */}
       <Text style={styles.title_login}>CADASTRE-SE</Text>
-      
-      <Text style={styles.subtitle_login}>
-        Para um atendimento mais rápido</Text>
+      <Text style={styles.subtitle_login}>Para um atendimento mais rápido</Text>
 
-{/* ------------------------- Divisão 1 --------------------------- */}
+      {/* Seção principal do formulário */}
+      <View style={styles.redback_login}>
+        <View style={styles.inputContainer_login}>
+          {/* Campo de nome do paciente */}
+          <Text style={styles.label_login}>Nome do Paciente</Text>
+          <TextInput style={styles.input_login} value={name} onChangeText={setName} />
 
-    <View style={styles.redback_login}>
+          {/* Campo de data de nascimento com máscara */}
+          <Text style={styles.label_login}>Data de Nascimento</Text>
+          <TextInputMask
+            type={'datetime'}
+            options={{
+              format: 'DD/MM/YYYY',
+            }}
+            value={birthdate}
+            onChangeText={setBirthdate}
+            style={styles.input_login}
+            keyboardType="numeric"
+          />
 
-    <View style={styles.inputContainer_login}>
+          {/* Campo de CPF com máscara */}
+          <Text style={styles.label_login}>CPF</Text>
+          <TextInputMask
+            type={'cpf'}
+            value={cpf}
+            onChangeText={setCPF}
+            style={styles.input_login}
+            keyboardType="numeric"
+          />
 
-      <Text style={styles.label_login}>Nome do Paciente</Text>
-      <TextInput
-        style={styles.input_login}
-        onChangeText={handleNameChange}
-      />
+          {/* Campo de e-mail */}
+          <Text style={styles.label_login}>E-Mail</Text>
+          <TextInput style={styles.input_login} value={email} onChangeText={setEmail} />
 
-      <Text style={styles.label_login}>Data de Nascimento</Text>
-      <TextInput
-        style={styles.input_login}
-        keyboardType='numeric'
-      />
+          {/* Campo de telefone com máscara */}
+          <Text style={styles.label_login}>Telefone</Text>
+          <TextInputMask
+            type={'cel-phone'}
+            options={{
+              maskType: 'BRL',
+              withDDD: true,
+              dddMask: '(99) ',
+            }}
+            value={phone}
+            onChangeText={setPhone}
+            style={styles.input_login}
+            keyboardType="numeric"
+          />
 
-      <Text style={styles.label_login}>CPF</Text>
-      <TextInput
-        style={styles.input_login}
-        onChangeText={setCPF}
-        keyboardType='numeric'
-      />
+          {/* Labels para horário e dia da consulta */}
+          <View style={styles.labelContainer_login}>
+            <Text style={styles.labelHour_login}>Horário da consulta</Text>
+            <Text style={styles.labelDay_login}>Dia da consulta</Text>
+          </View>
 
-      <Text style={styles.label_login}>E-Mail</Text>
-      <TextInput
-        style={styles.input_login}
-        onChangeText={setEmail}
-      />
+          {/* Campos de horário e dia da consulta com máscaras */}
+          <View style={styles.inputContainer2_login}>
+            <TextInputMask
+              type={'datetime'}
+              options={{
+                format: 'HH:mm',
+              }}
+              value={hour}
+              onChangeText={setHour}
+              style={styles.input2_login}
+              keyboardType="numeric"
+            />
 
-      <Text style={styles.label_login}>Telefone</Text>
-      <TextInput
-        style={styles.input_login}
-        // type={'cel-phone'}
-        onChangeText={setPhone}
-        keyboardType='numeric'
-      />
-
-
-
-
-      <View style={styles.labelContainer_login}>
-
-      <Text style={styles.labelHour_login}>Horário da consulta</Text>
-      <Text style={styles.labelDay_login}>Dia da consulta</Text>
-
+            <TextInputMask
+              type={'datetime'}
+              options={{
+                format: 'DD/MM/YYYY',
+              }}
+              value={data}
+              onChangeText={setData}
+              style={styles.input2_login}
+              keyboardType="numeric"
+            />
+          </View>
+        </View>
       </View>
 
-
-
-
-      <View style={styles.inputContainer2_login}>
-
-      <TextInput
-        style={styles.input2_login}
-        onChangeText={setHour}
-        keyboardType='numeric'
-      />
-
-      
-      <TextInput
-        style={styles.input2_login}
-        onChangeText={setData}
-        keyboardType='numeric'
-      />
-
-    </View>
-
-    </View>
-
-
-    </View>
-
-{/* ------------------------- Divisão 2 --------------------------- */}
-
-      <TouchableOpacity style={styles.button_login}>
-
-        <Text 
-          style={styles.buttontext_login}
-          onPress={() => {navigation.navigate("Home", { name })}}>
-        FINALIZADO</Text>
-
+      {/* Botão de finalização */}
+      <TouchableOpacity style={styles.button_login} onPress={handleSubmit}>
+        <Text style={styles.buttontext_login}>FINALIZADO</Text>
       </TouchableOpacity>
-
     </View>
-
   );
 }
 
+// _______________________________________________________
+// Estilos do componente
+
 const styles = StyleSheet.create({
-
-    container_login:{
-  
-        flex:1,   
-        backgroundColor: "#fff",   
-        justifyContent: 'center',
-        alignItems: 'center'
-      },
-    
-
-  wedoctor_cross_login:{
+  container_login: {
+    flex: 1,
+    backgroundColor: '#fff',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  wedoctor_cross_login: {
     width: 60,
     height: 60,
-
     borderRadius: 5,
-
     marginTop: 40,
     marginBottom: 15,
-    
   },
-
-  
-
-  title_login:{
-
-    color: "#B61D10",
+  title_login: {
+    color: '#B61D10',
     fontSize: 25,
     fontWeight: '900',
-    
   },
-
-  subtitle_login:{
-
-    color: "#B61D10",
-    fontsize: 50,
+  subtitle_login: {
+    color: '#B61D10',
+    fontSize: 18,
     fontWeight: 'bold',
-    
-    
   },
-
-//  --------------------------- Style 1 -----------------------------  //
-
-  redback_login:{
-    
-  marginTop: 25,  
-
-  backgroundColor: "#E91608",
-  borderRadius: 10,
-  height: 540,
-
-
+  redback_login: {
+    marginTop: 25,
+    backgroundColor: '#E91608',
+    borderRadius: 10,
+    height: 540,
   },
-
-  inputContainer_login:{
-
+  inputContainer_login: {
     marginTop: 20,
     marginHorizontal: 20,
-
   },
-
-  inputContainer2_login:{
+  inputContainer2_login: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-
   },
-
-  label_login:{
-
-    color: "white",
+  label_login: {
+    color: 'white',
     fontWeight: '400',
     marginTop: 10,
     marginBottom: 10,
     marginLeft: 10,
-
   },
-
-  labelHour_login:{
-
-    color: "white",
+  labelHour_login: {
+    color: 'white',
     fontWeight: '400',
     marginTop: 10,
     marginBottom: 10,
-
     marginLeft: 22.5,
-
   },
-
-  labelDay_login:{
-
-    color: "white",
+  labelDay_login: {
+    color: 'white',
     fontWeight: '400',
     marginTop: 10,
     marginBottom: 10,
-
     marginLeft: 70,
-
   },
-  
-
   labelContainer_login: {
-
     flexDirection: 'row',
     marginTop: 5,
-
   },
-
-  input_login:{
-
-    backgroundColor: "#9B0E08",
+  input_login: {
+    backgroundColor: '#9B0E08',
     borderRadius: 10,
     marginHorizontal: 12,
-
     width: 330,
     height: 40,
-
     color: 'white',
     fontSize: 13,
     padding: 10,
-
   },
-
-  input2_login:{
-
-    backgroundColor: "#9B0E08",
+  input2_login: {
+    backgroundColor: '#9B0E08',
     borderRadius: 10,
     marginHorizontal: 12,
-
     width: 150,
     height: 40,
-
     color: 'white',
     fontSize: 13,
     padding: 10,
-    
     marginBottom: 10,
-    
-
   },
-
-//  --------------------------- Style 2 -----------------------------  //
-
-  button_login:{
-
-    backgroundColor: "#BE180C",
+  button_login: {
+    backgroundColor: '#BE180C',
     borderRadius: 10,
     width: 125,
     height: 35,
-
     alignItems: 'center',
     justifyContent: 'center',
-    
     marginTop: 12.5,
     marginBottom: 20,
-
-    shadowColor: 'black', // Cor da sombra
-    shadowOffset: { width: 2, height: 2 }, // Deslocamento da sombra
-    shadowOpacity: 1, // Opacidade da sombra
-    shadowRadius: 5, // Raio de desfoque da sombra
-    elevation: 10, // Elevação (para Android)
-
+    shadowColor: 'black',
+    shadowOffset: { width: 2, height: 2 },
+    shadowOpacity: 1,
+    shadowRadius: 5,
+    elevation: 10,
   },
-
-  buttontext_login:{
-    color: "white",
+  buttontext_login: {
+    color: 'white',
     fontWeight: 'bold',
-    
-  }
-
-
-})
+  },
+});
