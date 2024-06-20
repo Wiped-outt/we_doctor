@@ -26,7 +26,7 @@ const [search, setSearch] = ('');
                     
                 <View style={styles.container2_Home}>
 
-                    <Text style={styles.title_Home}>Bem-vindo, {name}!</Text>
+                    <Text style={styles.title_Home}>Seja Bem-vindo!</Text>
 
                     <TextInput
                         style={styles.input_search_Home}
@@ -128,13 +128,13 @@ const [search, setSearch] = ('');
 
                         <View  iew style={styles.time_background_Home}>
 
-                            <Text style={styles.time_Home}>{data}</Text>
+                            <Text style={styles.time_Home}>27/09/2024</Text>
                         
                         </View>
 
                         <View  iew style={styles.time_background_Home}>
 
-                            <Text style={styles.time_Home}>{hour}</Text>
+                            <Text style={styles.time_Home}>13:30</Text>
 
                         </View>
 

@@ -1,29 +1,21 @@
 import React, { useState, NavigationContainer } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, TextInput} from 'react-native';
+// import TextInputMask from 'react-native-text-input-mask';
 
 // import { TextInputMask } from 'react-native-masked-text';
 // npm install react-native-masked-text --save
 
-const navigation = useNavigation();
-const [name, setName] = useState('Cliente');
-const [birthdate, setBirthdate] = ('Nascimento');
-const [cpf, setCPF] = ('CPF');
-const [email, setEmail] = ('E-mail');
-const [phone, setPhone] = useState('Telefone');
-const [hour, setHour] = useState('Horário');
-const [data, setData] = useState('Data');
-
-const handleNameChange = (text) => {
-  setName(text);
-};
-
-const handleNavigate = () => {
-  navigation.navigate('Home', { name });
-};
 
 export default function Login ({ navigation, route}) {
-
-
+  
+  const [name, setName] = useState ('Cliente');
+  const [birthdate, setBirthdate] = ('Nascimento');
+  const [cpf, setCPF] = useState('');
+  const [email, setEmail] = ('E-mail');
+  const [phone, setPhone] = ('Telefone');
+  const [hour, setHour] = ('Horário');
+  const [data, setData] = ('Data');
+  
   return(
 
     <View style={styles.container_login}>
@@ -47,7 +39,7 @@ export default function Login ({ navigation, route}) {
       <Text style={styles.label_login}>Nome do Paciente</Text>
       <TextInput
         style={styles.input_login}
-        onChangeText={handleNameChange}
+        onChangeText={setName}
       />
 
       <Text style={styles.label_login}>Data de Nascimento</Text>
@@ -60,7 +52,11 @@ export default function Login ({ navigation, route}) {
       <TextInput
         style={styles.input_login}
         onChangeText={setCPF}
-        keyboardType='numeric'
+        // onChangeText={(formatted, extracted) => {
+        //   setCPF(extracted);
+        // }}
+        // mask={"[000].[000].[000]-[00]"}
+        keyboardType="numeric"
       />
 
       <Text style={styles.label_login}>E-Mail</Text>
